@@ -1,13 +1,28 @@
 {
-  "description": "NativeScript Application",
-  "license": "SEE LICENSE IN <your-license-filename>",
-  "readme": "NativeScript Application",
-  "repository": "<fill-your-repository-here>",
+  "private": false,
   "nativescript": {
-    "id": "org.nativescript.anglesmobile",
-    "tns-ios": {
-      "version": "2.4.0"
-    }
+      "id": "nl.sense.angles"
+  },
+  "name": "tns-template-hello-world-ng",
+  "main": "main.js",
+  "version": "0.0.1",
+  "author": "Team Angles",
+  "description": "Proof of Concept NativeScript Hybrid Technology",
+  "license": "BSD",
+  "keywords": [
+      "sense",
+      "mobile",
+      "angular",
+      "nativescript",
+      "{N}"
+  ],
+  "repository": {
+      "type": "git",
+      "url": "git@github.com:alamse/angles-app"
+  },
+  "homepage": "https://github.com/alamse/angles-app",
+  "android": {
+      "v8Flags": "--expose_gc"
   },
   "dependencies": {
     "@angular/common": "2.1.2",
