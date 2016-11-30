@@ -7,7 +7,7 @@ import "rxjs/add/operator/map";
 @Injectable()
 export class UserService {
 
-  baseUrl: string = '"http://reqres.in/api/users/';
+  baseUrl: string = 'http://reqres.in/api/users';
 
   constructor(private http: Http) {}
 
@@ -16,7 +16,7 @@ export class UserService {
     .map(res => res.json())
     .map(data => {
       let userList = [];
-      data.Result.forEach((user) => {
+      data.data.forEach((user) => {
         userList.push(new User(user.id, user.first_name, user.last_name, user.avatar));
       });
       return userList;

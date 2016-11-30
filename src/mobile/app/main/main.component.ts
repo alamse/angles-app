@@ -15,13 +15,10 @@ constructor(private userService: UserService,
             private zone: NgZone){ }
 
   ngOnInit() {
-      for (let i = 0; i < 20; i++) {
-          this.userList.push(new User(i, "" + i,"" + i,"" + i));
-      }
-
       this.userService.load()
       .subscribe(loadedUsers => {
         loadedUsers.forEach((userObject) => {
+          console.log(userObject);
           this.userList.unshift(userObject);
         });
       });

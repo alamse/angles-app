@@ -5,7 +5,7 @@
   <ListView [items]="userList" row="3" class="small-spacing">
     <template let-item="item">
       <GridLayout columns="*, auto">
-        <Label col="0" [text]="item.firstName" class="medium-spacing"></Label>
+        <Label col="0" text="{{item.firstName}} {{item.lastName}}" class="medium-spacing"></Label>
         <StackLayout col="1" class="delete-container" (tap)="delete(item)">
           <Image src="res://delete"></Image>
         </StackLayout>
