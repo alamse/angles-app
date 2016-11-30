@@ -2,6 +2,10 @@ node_modules
 
 src/mobile/platforms
 src/mobile/node_modules
+<<<<<<< HEAD
 src/mobile/lib
 src/mobile/**/*.js
 src/mobile/**/*.js.map
+=======
+.DS_Store
+>>>>>>> 62cfd407a393738b56ae69f700bdb7139063d36f
