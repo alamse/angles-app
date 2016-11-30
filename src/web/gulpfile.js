@@ -51,6 +51,7 @@ gulp.task('browser-sync', function (cb) {
   // The historyApiFallback is there because we are doing a single page app and index.html
   // needs to be served up for every URL.
   browserSync.init({
+    browser: 'google chrome',
     server: {
       baseDir: '.',
       middleware: [ historyApiFallback() ]

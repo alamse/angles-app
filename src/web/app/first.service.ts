@@ -36,7 +36,7 @@ export class UserList {
             let query = this.BASE_QUERY + page;
 
             let httpObservable = this.http.get(query)
-                .map(res => res.json().data); // @Gilang, try to remove the .data part ;-)
+                .map(res => res.json()); // @Gilang, try to remove the .data part ;-)
 
             // @Gilang, @Leo inside this subscribe we could save the result of the query
             // to a memoizer or local storage. Instead we just dump it to the console :-P
