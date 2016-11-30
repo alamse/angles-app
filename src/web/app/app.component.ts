@@ -14,7 +14,8 @@ import {UserComponent} from './user.component';
       <h1>Random fake user data 👻  </h1>
       <p style="padding:12px;">From http://reqres.in</p>        
       <div>
-        <a (click)="prevPage()"> < prev </a> {{_pageNum}} <a (click)="nextPage()"> next > </a>
+        <button disabled (click)="prevPage()"> < prev </button> 
+        {{_pageNum}} <button (click)="nextPage()"> next > </button>
       </div>
       <div class="userArea">
           <div *ngFor="let user of userListData.data" >
@@ -81,13 +82,21 @@ export class AppComponent {
         observer.subscribe((data: any) => this.userListData = data);
     }
 
-    nextPage() {
-        this._pageNum++;
+    nextPage(){
+        if (this._pageNum < this.userListData.total_pages) {
+            this._pageNum++;
+        } else {
+            console.log('end of the page')
+        }
         this.updatedUserList(this._pageNum);
     };
 
-    prevPage() {
-        this._pageNum--;
+    prevPage(){
+        if (this._pageNum > 1) {
+            this._pageNum--;
+        } else {
+            console.log('its already at the first one');
+        }
         this.updatedUserList(this._pageNum);
     };
 
