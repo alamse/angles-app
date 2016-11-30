@@ -1,8 +1,21 @@
 <ActionBar title="User Details">
     <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()" 
     ></NavigationButton>
-    <ActionItem (tap)="onEdit()"
-      ios.systemIcon="2" ios.position="right"
-      android.systemIcon="ic_menu_share"
-      text="edit" android.position="actionBar"></ActionItem>
 </ActionBar>
+<FlexboxLayout flexDirection="column">
+    
+        <StackLayout ios:cssClass="layout-container" android:cssClass="android-layout-container" vertical-alignment="stretch">
+            <image class="profile-picture" borderRadius="30" backgroundColor="gray" width="60" height="60" src="{{user.avatar}}"></image>
+            <GridLayout marginTop="10" ios:columns="auto,*" android:rows="auto, auto" verticalAlignment="top">
+                <label text="First Name" cssClass="field-title" ></label>
+                <TextField id="firstname" text="{{ user.firstName }}" cssClass="field" ios:col="1" android:row="1"  ></TextField>
+            </GridLayout>
+            <StackLayout cssClass="line"></StackLayout>
+            <GridLayout marginTop="10" ios:columns="auto,*" android:rows="auto, auto" verticalAlignment="top">
+                <label text="Last Name" cssClass="field-title" ></label>
+                <TextField id="lastname" text="{{ user.lastName }}" cssClass="field" ios:col="1" android:row="1" ></TextField>
+            </GridLayout>
+            <StackLayout cssClass="line"></StackLayout>
+        </StackLayout>
+    
+</FlexboxLayout>

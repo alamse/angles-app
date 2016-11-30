@@ -1,0 +1,43 @@
+/*.form-controls, .sign-up-stack {
+  opacity: 0;
+}*/
+
+.layout-container {
+    margin: 20 20 20 20;
+}
+
+.profile-picture{
+    margin-top: 10;
+}
+
+.btn-blue {
+    background-color: #3c5bfe;
+    height: 40;
+    color: white;
+    margin-top: 10;
+}
+
+.user-text{
+    border: 1 black solid;
+}
+
+.field-title, .field-switch-title {
+  horizontal-align: left;
+  font-size: 14;
+  color: #737373;
+  padding: 10 0;
+}
+
+.field {
+  horizontal-align: stretch;
+  text-align: right;
+  font-size: 14;
+  color: #1e2d7e;
+  padding: 10 0;
+}
+
+.line {
+    background-color: #DBDBDB;
+    height: 1;
+    margin: 0;
+}
