@@ -5,7 +5,7 @@ import { routes } from "./app.route"
 
 import { AppComponent } from "./app.component";
 // import { SplashComponent } from "./splash/splash.component";
-import { SplashModule } from "./splash/splash.module";
+import { DetailsModule } from "./details/details.module";
 
 @NgModule({
     declarations: [
@@ -16,7 +16,7 @@ import { SplashModule } from "./splash/splash.module";
         NativeScriptModule,
         NativeScriptRouterModule,
         NativeScriptRouterModule.forRoot(routes),
-        SplashModule
+        DetailsModule
     ]
 })
 export class AppModule { }

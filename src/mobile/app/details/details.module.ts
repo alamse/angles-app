@@ -1,17 +1,17 @@
 import { NativeScriptModule } from "nativescript-angular/platform";
 import { NgModule } from "@angular/core";
 
-import { splashRouting } from "./splash.route";
-import { SplashComponent } from "./splash.component";
+import { detailsRouting } from "./details.route";
+import { DetailsComponent } from "./details.component";
 
 @NgModule({
     imports: [
         NativeScriptModule,
-        splashRouting
+        detailsRouting
     ],
     declarations: [
-        SplashComponent
+        DetailsComponent
     ]
 })
 
-export class SplashModule{}
+export class DetailsModule{}

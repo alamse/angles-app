@@ -1,13 +1,13 @@
-import { SplashComponent } from "./splash/splash.component"
+import { DetailsComponent } from "./details/details.component"
 
 export const routes = [
     {
         path: "",
-        redirectTo: "/splash", 
+        redirectTo: "/details", 
         pathMatch: "full"
     },
     {
-        path: "splash",
-        component: SplashComponent
+        path: "details",
+        component: DetailsComponent
     }
 ]
