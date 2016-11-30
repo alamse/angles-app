@@ -91,6 +91,7 @@ export class AppComponent {
         this.updatedUserList(this._pageNum);
     };
 
+    //noinspection JSMethodCanBeStatic
     capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }

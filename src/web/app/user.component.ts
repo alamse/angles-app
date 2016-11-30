@@ -1,12 +1,4 @@
-//Angular imports
 import { Component, Input } from '@angular/core';
-
-// import { bootstrap } from '@angular/platform-browser-dynamic';
-// import { HTTP_PROVIDERS } from '@angular/http';
-
-//Sense custom imports
-
-
 
 @Component({
     selector: 'user',
@@ -40,6 +32,7 @@ import { Component, Input } from '@angular/core';
 
 
 export class UserComponent {
+    // TODO: check if we can make the @Input fields private
     // @Input() private firstName: string;
     // @Input() private lastName: string;
     // @Input() private profilePicture: string;
