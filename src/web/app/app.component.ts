@@ -1,41 +1,36 @@
-import {Component} from '@angular/core';
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import { Component } from '@angular/core';
+import { bootstrap } from '@angular/platform-browser-dynamic';
+import { HTTP_PROVIDERS } from '@angular/http';
 
+import {UserList} from './first.service';
 
 @Component({
     selector: 'app',
     template: `
-     <div class="container">
-       <div class="row">
-         <div class="col-sm-12">
-           <h1>Hello Sense World!</h1>
-         </div>
-       </div>
-     </div>
-    `
+      <h1>Random fake user data 👻  </h1>
+      <p style="padding:12px;">From http://reqres.in</p>
+      <pre>userListData: {{ userListData | json}}</pre>      
+    `,
+    providers: [ UserList  ]
 })
-export class HelloWorld {
+export class AppComponent {
 
+
+    private userListData;
+
+
+    constructor (users: UserList ) {
+        //TODO: consider moving this code from the constructor to a dedicated method
+
+        //TODO: @Gilang, @Leo. This page number must be taken from user input later
+        let pageNum = 1;
+
+        //@Gilang, note the `` instead of '', that's to make the string interpolation with ${} work
+        this.userListData = `Fetching page ${pageNum}` ;
+
+        let observer = users.fetchUsers(pageNum);
+        // observer.subscribe((data: any) => this.userListData = data);
+    }
 }
 
-bootstrap(HelloWorld);
-
-// import { Component } from '@angular/core';
-// import { bootstrap } from '@angular/platform-browser-dynamic';
-//
-// @Component({
-//   selector: 'app',
-//   template: `
-//     <div class="container">
-//       <div class="row">
-//         <div class="col-sm-12">
-//           <h1>Hello World!</h1>
-//         </div>
-//       </div>
-//     </div>
-//   `
-// })
-// export class HelloWorld {
-// }
-//
-// bootstrap(HelloWorld);
+bootstrap(AppComponent, [HTTP_PROVIDERS]);
