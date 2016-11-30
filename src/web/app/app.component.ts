@@ -14,8 +14,11 @@ import {UserComponent} from './user.component';
       <h1>Random fake user data 👻  </h1>
       <p style="padding:12px;">From http://reqres.in</p>        
       <div>
-        <button disabled (click)="prevPage()"> < prev </button> 
-        {{_pageNum}} <button (click)="nextPage()"> next > </button>
+        <button (click)="prevPage()" *ngIf="_pageNum > 1"> < prev </button> 
+        <button (click)="prevPage()" *ngIf="_pageNum == 1" disabled> < prev </button> 
+        {{_pageNum}} 
+        <button (click)="nextPage()" *ngIf="_pageNum < userListData.total_pages"> next > </button>
+        <button (click)="nextPage()" *ngIf="_pageNum == userListData.total_pages" disabled> next > </button>
       </div>
       <div class="userArea">
           <div *ngFor="let user of userListData.data" >
@@ -50,6 +53,7 @@ export class AppComponent {
 
     private userListData;
     private _pageNum = 1;
+    private btnDisabled = false;
 
     constructor(private users: UserList) {
 
@@ -86,7 +90,7 @@ export class AppComponent {
         if (this._pageNum < this.userListData.total_pages) {
             this._pageNum++;
         } else {
-            console.log('end of the page')
+            his.btnDisabled = true;
         }
         this.updatedUserList(this._pageNum);
     };
@@ -95,7 +99,7 @@ export class AppComponent {
         if (this._pageNum > 1) {
             this._pageNum--;
         } else {
-            console.log('its already at the first one');
+            this.btnDisabled = true;
         }
         this.updatedUserList(this._pageNum);
     };
