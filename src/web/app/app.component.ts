@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
-import { bootstrap } from '@angular/platform-browser-dynamic';
-import { HTTP_PROVIDERS } from '@angular/http';
+//Angular imports
+import {Component} from '@angular/core';
+import {bootstrap} from '@angular/platform-browser-dynamic';
+import {HTTP_PROVIDERS} from '@angular/http';
 
+//Sense custom imports
 import {UserList} from './first.service';
+import {UserComponent} from './user.component';
+
 
 @Component({
     selector: 'app',
@@ -13,8 +17,12 @@ import {UserList} from './first.service';
       <div>
         <a (click)="prevPage()"> < prev </a> {{_pageNum}} <a (click)="nextPage()"> next > </a>
       </div>
+      
+            <user first-name="Heather" last-name="Small"></user>
+            <user first-name="Freddie" last-name="Mercury"></user>            
     `,
-    providers: [ UserList  ]
+    providers: [UserList],
+    directives:[UserComponent]
 })
 export class AppComponent {
 
@@ -23,31 +31,45 @@ export class AppComponent {
     private _pageNum = 1;
 
     constructor ( private users: UserList ) {
-        //TODO: consider moving this code from the constructor to a dedicated method
+
+        // @Gilang:
+        //
+        // "private users: UserList" is basically the same as if we did the following:
+        //
+        //  ...
+        //  private users: UserList;
+        //
+        //  constructor ( users: UserList ) {
+        //        this.users = users;
+        //  }
+        //
+
+
 
         //TODO: @Gilang, @Leo. This page number must be taken from user input later
         let pageNum = this._pageNum;
-        this.fetchUsers(pageNum);
+        this.updatedUserList(pageNum);
 
     }
 
-    fetchUsers(pageNum: number){
+    updatedUserList(pageNum: number){
         //@Gilang, note the `` instead of '', that's to make the string interpolation with ${} work
         this.userListData = `Fetching page ${pageNum}` ;
         console.log(this.userListData);
 
-        let observer = this.users.fetchUsers(pageNum)alr
+
+        let observer = this.users.fetchUsers(pageNum);
         observer.subscribe((data: any) => this.userListData = data);
     }
 
     nextPage(){
         this._pageNum++;
-        this.fetchUsers(this._pageNum);
+        this.updatedUserList(this._pageNum);
     };
 
     prevPage(){
         this._pageNum--;
-        this.fetchUsers(this._pageNum);
+        this.updatedUserList(this._pageNum);
     };
 }
 
