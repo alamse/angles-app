@@ -1,24 +1,22 @@
 import { Component, NgModule } from "@angular/core";
-import { platformNativeScriptDynamic, NativeScriptModule } from "nativescript-angular/platform";
+import { platformNativeScriptDynamic, NativeScriptModule,  } from "nativescript-angular/platform";
+import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptRouterModule } from "nativescript-angular/router"
-import { routes } from "./app.route"
+import { routes, navigatableComponents } from "./app.route"
 
 import { AppComponent } from "./app.component";
-// import { SplashComponent } from "./splash/splash.component";
-import { DetailsModule } from "./details/details.module";
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        ...navigatableComponents,
     ],
     bootstrap: [AppComponent],
     imports: [
         NativeScriptModule,
+        NativeScriptHttpModule,
         NativeScriptRouterModule,
-        NativeScriptRouterModule.forRoot(routes),
-        DetailsModule
+        NativeScriptRouterModule.forRoot(routes)
     ]
 })
 export class AppModule { }
-
-platformNativeScriptDynamic().bootstrapModule(AppModule);
