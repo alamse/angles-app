@@ -6,7 +6,7 @@
     <template let-item="item">
       <GridLayout columns="*, auto">
         <Label col="0" text="{{item.firstName}} {{item.lastName}}" class="medium-spacing"></Label>
-        <StackLayout col="1" class="delete-container" (tap)="delete(item)">
+        <StackLayout col="1" class="delete-container" (tap)="open(item)">
           <Image src="res://delete"></Image>
         </StackLayout>
       </GridLayout>

@@ -18,9 +18,12 @@ constructor(private userService: UserService,
       this.userService.load()
       .subscribe(loadedUsers => {
         loadedUsers.forEach((userObject) => {
-          console.log(userObject);
           this.userList.unshift(userObject);
         });
       });
+  }
+
+  open(item) {
+
   }
 }
