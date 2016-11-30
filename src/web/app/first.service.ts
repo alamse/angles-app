@@ -14,6 +14,7 @@ export class UserList {
     //TODO: @Leo Find out how to make the BASE_QUERY readonly or const. Somehow
 
     private  BASE_QUERY: string = "http://reqres.in/api/users?page=";
+    private cache: Object = {};
 
 
     constructor (private http: Http) {
@@ -22,16 +23,18 @@ export class UserList {
     fetchUsers (page) {
         return new Observable(observer => {
 
+
             // Here we can inject cached data (from localStorage or memory)
             // So that our app could show at least something, while waiting for the server's response.
             observer.next({
-                    id: -1,
-                    first_name: "N/A",
-                    last_name: "N/A",
-                    avatar: "N/A",
-                    whatever:"something"
+                "message":"Loading ..."
             });
 
+            if ( this.cache [page]){
+                observer.next(this.cache [page]);
+                console.log(`Page ${page} found in cache! No call to the server.`);
+                return;
+            }
 
             let query = this.BASE_QUERY + page;
 
@@ -41,7 +44,8 @@ export class UserList {
             // @Gilang, @Leo inside this subscribe we could save the result of the query
             // to a memoizer or local storage. Instead we just dump it to the console :-P
             httpObservable.subscribe(
-                res => console.log(JSON.stringify(res))
+                // res => console.log(JSON.stringify(res))
+                res => this.cache [res.page] = res
             );
 
             // Push the result from the server to the observer,

@@ -13,18 +13,22 @@ import { Component, Input } from '@angular/core';
     template: `
     <div class = "userModule" >
       <img [src]="profilePicture">
-      <div>First name: {{firstName}}</div>
-      <div>Last name: {{lastName}}</div>
+      <div>First name: <b>{{firstName}}</b></div>
+      <div>Last name: <b>{{lastName}}</b></div>
     </div>`,
     styles: [ `.userModule {
-               background: #eeffee; 
-               margin:30px; 
+               background: #fafafa; 
+               margin:10px; 
                padding:10px;
                width: 460px;
                display: flex;
                flex-direction: column;
                align-items: center;               
                text-wrap: none;
+             }
+             
+             b{
+                color:#770000;
              }
              
              .userModule img {

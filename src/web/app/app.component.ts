@@ -12,17 +12,37 @@ import {UserComponent} from './user.component';
     selector: 'app',
     template: `
       <h1>Random fake user data 👻  </h1>
-      <p style="padding:12px;">From http://reqres.in</p>
-      <pre>userListData: {{ userListData | json}}</pre>  
+      <p style="padding:12px;">From http://reqres.in</p>        
       <div>
         <a (click)="prevPage()"> < prev </a> {{_pageNum}} <a (click)="nextPage()"> next > </a>
       </div>
-      
-            <user first-name="Heather" last-name="Small"></user>
-            <user first-name="Freddie" last-name="Mercury"></user>            
+      <div class="userArea">
+          <div *ngFor="let user of userListData.data" >
+                <user  
+                avatar-url="{{user.avatar}}" 
+                first-name="{{capitalizeFirstLetter(user.first_name)}}" 
+                last-name="{{capitalizeFirstLetter(user.last_name)}}"></user>          
+          </div>
+       </div>
+        <pre>userListData: {{ userListData | json}}</pre>
     `,
+    styles: [`.userArea {
+               background: #dadada; 
+               height:380px; 
+               padding:10px;
+               width: 520px;
+               display: flex;
+               flex-direction: column;
+               align-items: center;               
+               text-wrap: none;
+             }
+             
+             .userModule img {
+               width: 32px;
+             }`],
+
     providers: [UserList],
-    directives:[UserComponent]
+    directives: [UserComponent]
 })
 export class AppComponent {
 
@@ -30,7 +50,7 @@ export class AppComponent {
     private userListData;
     private _pageNum = 1;
 
-    constructor ( private users: UserList ) {
+    constructor(private users: UserList) {
 
         // @Gilang:
         //
@@ -45,32 +65,36 @@ export class AppComponent {
         //
 
 
-
         //TODO: @Gilang, @Leo. This page number must be taken from user input later
         let pageNum = this._pageNum;
         this.updatedUserList(pageNum);
 
     }
 
-    updatedUserList(pageNum: number){
+    updatedUserList(pageNum: number) {
         //@Gilang, note the `` instead of '', that's to make the string interpolation with ${} work
-        this.userListData = `Fetching page ${pageNum}` ;
-        console.log(this.userListData);
+        this.userListData = `Fetching page ${pageNum}`;
+        // console.log(this.userListData);
 
 
         let observer = this.users.fetchUsers(pageNum);
         observer.subscribe((data: any) => this.userListData = data);
     }
 
-    nextPage(){
+    nextPage() {
         this._pageNum++;
         this.updatedUserList(this._pageNum);
     };
 
-    prevPage(){
+    prevPage() {
         this._pageNum--;
         this.updatedUserList(this._pageNum);
     };
+
+    capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
 }
 
 bootstrap(AppComponent, [HTTP_PROVIDERS]);
