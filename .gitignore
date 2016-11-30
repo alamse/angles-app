@@ -2,3 +2,5 @@ node_modules
 
 src/mobile/platforms
 src/mobile/node_modules
+src/mobile/**/*.js
+src/mobile/**/*.js.map
