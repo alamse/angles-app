@@ -1,0 +1,15 @@
+<GridLayout rows="auto, *">
+
+  <Image id="logo" row="0" src="res://icon" horizontalAlignment="center" stretch="aspectFit"></Image>
+
+  <ListView [items]="userList" row="3" class="small-spacing">
+    <template let-item="item">
+      <GridLayout columns="*, auto">
+        <Label col="0" text="{{item.firstName}} {{item.lastName}}" class="medium-spacing"></Label>
+        <StackLayout col="1" class="delete-container" (tap)="open(item)">
+          <Image src="res://delete"></Image>
+        </StackLayout>
+      </GridLayout>
+    </template>
+  </ListView>
+</GridLayout>

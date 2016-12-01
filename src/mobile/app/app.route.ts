@@ -1,13 +1,12 @@
 import { DetailsComponent } from "./details/details.component"
+import { MainComponent } from "./main/main.component"
 
 export const routes = [
-    {
-        path: "",
-        redirectTo: "/details", 
-        pathMatch: "full"
-    },
-    {
-        path: "details",
-        component: DetailsComponent
-    }
-]
+  { path: "", component: MainComponent },
+  { path: "details", component: DetailsComponent }
+];
+
+export const navigatableComponents = [
+  MainComponent,
+  DetailsComponent,
+];
