@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { ActivatedRoute } from '@angular/router';
 import { TextField } from "ui/text-field";
 import { User } from "../shared"
 
@@ -10,12 +11,17 @@ import { User } from "../shared"
 
 export class DetailsComponent {
     user: User;
+    firstName: string;
+    constructor(private route: ActivatedRoute) {
+        this.route.params
+            .forEach((param) => { 
+                console.log(param["firstName"]); 
+                this.user = new User();
+                this.user.firstName = param["firstName"];
+                this.user.lastName = param["lastName"];
+                this.user.avatar = param["avatar"];
+            });
 
-    constructor() {
-        this.user = new User();
-        this.user.firstName = "Alam";
-        this.user.lastName = "Yudi";
-        this.user.avatar = "https://s3.amazonaws.com/uifaces/faces/twitter/marcoramires/128.jpg";
     }
 
     public onNavBtnTap(){

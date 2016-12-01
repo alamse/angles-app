@@ -3,7 +3,7 @@ import { MainComponent } from "./main/main.component"
 
 export const routes = [
   { path: "", component: MainComponent },
-  { path: "details", component: DetailsComponent }
+  { path: "details/:firstName/:lastName/:avatar", component: DetailsComponent }
 ];
 
 export const navigatableComponents = [
